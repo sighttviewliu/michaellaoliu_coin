@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[michaellaoliu.qt-translation-016x]
+file_filter = src/qt/locale/michaellaoliu_<lang>.ts
+source_file = src/qt/locale/michaellaoliu_en.ts
+source_lang = en

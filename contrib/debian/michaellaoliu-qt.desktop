@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Michaellaoliu Core
+Comment=Connect to the Michaellaoliu P2P Network
+Comment[de]=Verbinde mit dem Michaellaoliu peer-to-peer Netzwerk
+Comment[fr]=Michaellaoliu, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Michaellaoliu, eşten eşe kriptografik sanal para birimi
+Exec=michaellaoliu-qt %u
+Terminal=false
+Type=Application
+Icon=michaellaoliu128
+MimeType=x-scheme-handler/michaellaoliu;
+Categories=Office;Finance;
+StartupWMClass=Michaellaoliu-qt

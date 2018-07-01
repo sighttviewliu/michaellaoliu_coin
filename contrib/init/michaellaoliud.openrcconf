@@ -1,0 +1,33 @@
+# /etc/conf.d/michaellaoliud: config file for /etc/init.d/michaellaoliud
+
+# Config file location
+#MICHAELLAOLIUD_CONFIGFILE="/etc/michaellaoliu/michaellaoliu.conf"
+
+# What directory to write pidfile to?  (created and owned by $MICHAELLAOLIUD_USER)
+#MICHAELLAOLIUD_PIDDIR="/var/run/michaellaoliud"
+
+# What filename to give the pidfile
+#MICHAELLAOLIUD_PIDFILE="${MICHAELLAOLIUD_PIDDIR}/michaellaoliud.pid"
+
+# Where to write michaellaoliud data (be mindful that the blockchain is large)
+#MICHAELLAOLIUD_DATADIR="/var/lib/michaellaoliud"
+
+# User and group to own michaellaoliud process
+#MICHAELLAOLIUD_USER="michaellaoliu"
+#MICHAELLAOLIUD_GROUP="michaellaoliu"
+
+# Path to michaellaoliud executable
+#MICHAELLAOLIUD_BIN="/usr/bin/michaellaoliud"
+
+# Nice value to run michaellaoliud under
+#MICHAELLAOLIUD_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#MICHAELLAOLIUD_OPTS=""
+
+# The timeout in seconds OpenRC will wait for michaellaoliud to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+MICHAELLAOLIUD_SIGTERM_TIMEOUT=60

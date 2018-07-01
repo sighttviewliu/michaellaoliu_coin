@@ -1,0 +1,6 @@
+usr/local/bin/michaellaoliu-qt usr/bin
+share/pixmaps/michaellaoliu32.xpm usr/share/pixmaps
+share/pixmaps/michaellaoliu16.xpm usr/share/pixmaps
+share/pixmaps/michaellaoliu128.png usr/share/pixmaps
+debian/michaellaoliu-qt.desktop usr/share/applications
+debian/michaellaoliu-qt.protocol usr/share/kde4/services/

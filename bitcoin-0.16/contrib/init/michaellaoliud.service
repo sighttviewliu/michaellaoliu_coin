@@ -1,0 +1,25 @@
+# It is not recommended to modify this file in-place, because it will
+# be overwritten during package upgrades. If you want to add further
+# options or overwrite existing ones then use
+# $ systemctl edit michaellaoliud.service
+# See "man systemd.service" for details.
+
+# Note that almost all daemon options could be specified in
+# /etc/michaellaoliu/michaellaoliu.conf
+
+[Unit]
+Description=Michaellaoliu daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/michaellaoliud -daemon -conf=/etc/michaellaoliu/michaellaoliu.conf -pid=/run/michaellaoliud/michaellaoliud.pid
+# Creates /run/michaellaoliud owned by michaellaoliu
+RuntimeDirectory=michaellaoliud
+User=michaellaoliu
+Type=forking
+PIDFile=/run/michaellaoliud/michaellaoliud.pid
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,81 @@
+policy_module(michaellaoliu, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type michaellaoliu_t;
+type michaellaoliu_exec_t;
+init_daemon_domain(michaellaoliu_t, michaellaoliu_exec_t)
+
+permissive michaellaoliu_t;
+
+type michaellaoliu_initrc_exec_t;
+init_script_file(michaellaoliu_initrc_exec_t)
+
+type michaellaoliu_conf_t;
+files_type(michaellaoliu_conf_t)
+
+type michaellaoliu_var_lib_t;
+files_type(michaellaoliu_var_lib_t)
+
+type michaellaoliu_var_run_t;
+files_type(michaellaoliu_var_run_t)
+
+type michaellaoliu_port_t;
+corenet_port(michaellaoliu_port_t)
+
+########################################
+#
+# michaellaoliu local policy
+#
+allow michaellaoliu_t self:process { fork };
+
+allow michaellaoliu_t self:fifo_file rw_fifo_file_perms;
+allow michaellaoliu_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(michaellaoliu_t, michaellaoliu_conf_t, michaellaoliu_conf_t)
+manage_files_pattern(michaellaoliu_t, michaellaoliu_conf_t, michaellaoliu_conf_t)
+
+manage_dirs_pattern(michaellaoliu_t, michaellaoliu_var_lib_t, michaellaoliu_var_lib_t)
+manage_files_pattern(michaellaoliu_t, michaellaoliu_var_lib_t, michaellaoliu_var_lib_t)
+files_var_lib_filetrans(michaellaoliu_t, michaellaoliu_var_lib_t, { dir file })
+
+manage_dirs_pattern(michaellaoliu_t, michaellaoliu_var_run_t, michaellaoliu_var_run_t)
+manage_files_pattern(michaellaoliu_t, michaellaoliu_var_run_t, michaellaoliu_var_run_t)
+
+sysnet_dns_name_resolve(michaellaoliu_t)
+corenet_all_recvfrom_unlabeled(michaellaoliu_t)
+
+allow michaellaoliu_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(michaellaoliu_t)
+corenet_tcp_sendrecv_generic_node(michaellaoliu_t)
+corenet_tcp_sendrecv_all_ports(michaellaoliu_t)
+corenet_tcp_bind_generic_node(michaellaoliu_t)
+
+gen_require(`
+    type michaellaoliu_port_t;
+')
+allow michaellaoliu_t michaellaoliu_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type michaellaoliu_port_t;
+')
+allow michaellaoliu_t michaellaoliu_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(michaellaoliu_t)
+
+files_read_etc_files(michaellaoliu_t)
+
+miscfiles_read_localization(michaellaoliu_t)
+
+sysnet_dns_name_resolve(michaellaoliu_t)
+
+allow michaellaoliu_t michaellaoliu_exec_t:file execute_no_trans;
+allow michaellaoliu_t self:process setsched;
+corecmd_exec_ls(michaellaoliu_t)
+corenet_tcp_connect_http_port(michaellaoliu_t)
+dev_read_urand(michaellaoliu_t)
+fs_getattr_xattr_fs(michaellaoliu_t)
+kernel_read_system_state(michaellaoliu_t)
